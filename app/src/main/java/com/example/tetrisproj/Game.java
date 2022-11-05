@@ -82,7 +82,8 @@ public class Game {
 
     public void start(){
 
-        gamet.start();
+        //changes
+        //gamet.start();
 
         runGame = true;
         while(runGame){
