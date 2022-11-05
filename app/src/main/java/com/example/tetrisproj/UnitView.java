@@ -1,5 +1,7 @@
 package com.example.tetrisproj;
 
+import static com.example.tetrisproj.Colors.*;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -26,8 +28,8 @@ public class UnitView extends View {
 
     int width;
     int height;
-    String bgColor;
-    String fgColor;
+    Colors bgColor;
+    Colors fgColor;
     int num;
 
     public UnitView(Context context) {
@@ -49,15 +51,15 @@ public class UnitView extends View {
         this.setPadding(1, 1, 1, 1);
 
         this.setLayoutParams(new ViewGroup.LayoutParams(width, height));
-        setBgColor("dark grey");
-        setFgColor("grey");
+        setBgColor(dark_grey);
+        setFgColor(grey);
 
     }
     @Override
     public void onDraw(Canvas canvas){
         myCanvas = canvas;
         p = new Paint();
-        p.setColor(Color.parseColor(fgColor));
+        p.setColor(fgColor.getCHash());
         rect = new Rect(2, 2, 68, 68);
         canvas.drawRect(rect,p );
     }
@@ -69,24 +71,23 @@ public class UnitView extends View {
         return num;
     }
 
-    public void setBgColor(String c){
-        bgColor = c;
-        this.setBackgroundColor(colors.get(bgColor));
+    public void setBgColor(Colors c){
+        this.setBackgroundColor(c.getCHash());
         this.invalidate();
     }
-    public String getBgColor(){
+    public Colors getBgColor(){
         return bgColor;
     }
 
     public void delet(){
-        setBgColor("dark grey");
-        setFgColor("grey");
+        setBgColor(dark_grey);
+        setFgColor(grey);
     }
-    public void setFgColor(String c){
+    public void setFgColor(Colors c){
         fgColor = c;
         this.invalidate();
     }
-    public String getFgColor(){
+    public Colors getFgColor(){
         return fgColor;
     }
 }

@@ -1,15 +1,17 @@
 package com.example.tetrisproj;
 
+import static com.example.tetrisproj.Colors.*;
+
 public class GameUnit {
 
     private int x, y, preX, preY;
-    private String color;
+    private Colors color;
 
-    public GameUnit(String color){
+    public GameUnit(Colors color){
         this.color = color;
 
     }
-    public GameUnit(String color, int x, int y){
+    public GameUnit(Colors color, int x, int y){
         this.color = color;
         this.x = x;
         this.y = y;
@@ -33,11 +35,11 @@ public class GameUnit {
         return preY*10  +preX ;
     }
 
-    public String getColor(){
+    public Colors getColor(){
         return color;
     }
 
-    public void setColor(String color){
+    public void setColor(Colors color){
         this.color = color;
     }
 
@@ -57,6 +59,6 @@ public class GameUnit {
             y++;
     }
     public void delet(){
-        color = "grey";
+        color = grey;
     }
 }

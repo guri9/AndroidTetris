@@ -1,5 +1,7 @@
 package com.example.tetrisproj;
 
+import static com.example.tetrisproj.Colors.*;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        current = new GameUnit("yellow");
+        current = new GameUnit(yellow);
 
         gg = findViewById(R.id.gameGrid);
         gg.removeAllViews();

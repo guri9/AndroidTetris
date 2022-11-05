@@ -1,4 +1,6 @@
 package com.example.tetrisproj;
+import static com.example.tetrisproj.Colors.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -39,7 +41,7 @@ public class Game {
 
         placed = new ArrayList<>();
 
-        GameUnit gu = new GameUnit("yellow", 5, 0);
+        GameUnit gu = new GameUnit(yellow, 5, 0);
         placed.add(gu);
         current = gu;
         draw();
