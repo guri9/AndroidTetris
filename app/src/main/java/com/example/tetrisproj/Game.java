@@ -1,8 +1,6 @@
 package com.example.tetrisproj;
 import static com.example.tetrisproj.Colors.*;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,7 +8,6 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import androidx.gridlayout.widget.GridLayout;
-
 import java.util.ArrayList;
 
 import kotlin.Unit;
@@ -22,22 +19,17 @@ public class Game {
     MainActivity ma;
     GridLayout gg;
     GameUnit current;
-    public static Thread gamet;
+    static Handler gameH;
 
 
     ArrayList<GameUnit> placed;
 
     public Game(){
 
-        gamet = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                gameHndler();
-            }
-        });
-
         ma = new MainActivity();
         gg = ma.gg;
+
+        gameH = new Handler();
 
         placed = new ArrayList<>();
 
@@ -48,22 +40,6 @@ public class Game {
 
     }
 
-    public void gameHndler(){
-        while(true){
-            Log.d("sleep", "start");
-            long millis = 3000;
-
-            try{
-                Thread.sleep(3000);
-            }catch (Exception e){}
-
-            Log.d("sleep", "resuming...");
-
-
-            dropCurrent();
-            draw();
-        }
-    }
 
     public void draw(){
         Log.d("draw", String.valueOf(placed.size()));
@@ -82,27 +58,28 @@ public class Game {
         ma.invalidateMenu();
     }
 
+    private void handleGame(){
+
+        Log.d("handler", "hello handler");
+        dropCurrent();
+
+        if(current.getY() == 19)
+            endGame();
+
+        gameH.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (runGame)
+                    handleGame();
+            }
+        }, 500);
+
+    }
+
     public void start(){
 
-        //changes
-        //gamet.start();
-
         runGame = true;
-        while(runGame){
-
-//        Log.d("sleep", "start");
-//        SystemClock.sleep(3000);
-//        Log.d("sleep", "resuming...");
-
-
-            //dropCurrent();
-            //draw();
-
-            runGame = false;
-
-        }
-
-
+        handleGame();
     }
     public void dropCurrent(){
         current.drop();
