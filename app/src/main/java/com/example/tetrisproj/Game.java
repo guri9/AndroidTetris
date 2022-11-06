@@ -65,6 +65,7 @@ public class Game {
 
         if(current.getY() == 19)
             endGame();
+        draw();
 
         gameH.postDelayed(new Runnable() {
             @Override
@@ -72,7 +73,7 @@ public class Game {
                 if (runGame)
                     handleGame();
             }
-        }, 500);
+        }, 1000);
 
     }
 
@@ -85,6 +86,13 @@ public class Game {
         current.drop();
         Log.d("X val", String.valueOf(current.getX()));
         Log.d("Y val", String.valueOf(current.getY()));
+    }
+    public void moveLCurrent(){
+        current.moveL();
+        draw();
+    }
+    public void moveRCurrent(){
+        current.moveR();
         draw();
     }
 

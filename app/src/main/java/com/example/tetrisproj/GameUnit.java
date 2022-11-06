@@ -44,16 +44,19 @@ public class GameUnit {
     }
 
     public void moveR(){
+        preY = y;
         preX = x;
         if(x < 9)
             x++;
     }
     public void moveL(){
+        preY = y;
         preX = x;
         if(x > 0)
             x--;
     }
     public void drop(){
+        preX = x;
         preY = y;
         if(y < 19)
             y++;

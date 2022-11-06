@@ -57,9 +57,14 @@ public class MainActivity extends AppCompatActivity {
     public void endGame(View v){
         game.endGame();
     }
-
-    public void leftClick(View v) {
+    public void drop(View v){
         game.dropCurrent();
+    }
+    public void leftClick(View v) {
+        game.moveLCurrent();
 
+    }
+    public void rightClick(View v){
+        game.moveRCurrent();
     }
 }
