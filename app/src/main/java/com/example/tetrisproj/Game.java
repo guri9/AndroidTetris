@@ -11,7 +11,7 @@ import androidx.gridlayout.widget.GridLayout;
 import java.util.ArrayList;
 
 import kotlin.Unit;
-
+// Blocks
 public class Game {
 
     UnitView[][] gmat;
@@ -84,8 +84,6 @@ public class Game {
     }
     public void dropCurrent(){
         current.drop();
-        Log.d("X val", String.valueOf(current.getX()));
-        Log.d("Y val", String.valueOf(current.getY()));
     }
     public void moveLCurrent(){
         current.moveL();
