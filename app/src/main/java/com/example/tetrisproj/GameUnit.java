@@ -2,6 +2,8 @@ package com.example.tetrisproj;
 
 import static com.example.tetrisproj.Colors.*;
 
+import android.util.Log;
+
 public class GameUnit {
 
     private int x, y, preX, preY;
@@ -56,6 +58,7 @@ public class GameUnit {
             x--;
     }
     public void drop(){
+
         preX = x;
         preY = y;
         if(y < 19)

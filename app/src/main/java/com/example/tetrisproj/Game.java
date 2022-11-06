@@ -18,11 +18,11 @@ public class Game {
     boolean runGame;
     MainActivity ma;
     GridLayout gg;
-    GameUnit current;
+    GameBlock current;
     static Handler gameH;
 
 
-    ArrayList<GameUnit> placed;
+    ArrayList<GameBlock> placed;
 
     public Game(){
 
@@ -31,11 +31,15 @@ public class Game {
 
         gameH = new Handler();
 
-        placed = new ArrayList<>();
+        placed = new ArrayList<GameBlock>();
 
-        GameUnit gu = new GameUnit(yellow, 5, 0);
-        placed.add(gu);
-        current = gu;
+        //GameUnit gu = new GameUnit(yellow, 5, 0);
+        //placed.add(gu);
+        //current = gu;
+
+        GameBlock gb = new GameBlock();
+        current = gb;
+        placed.add(gb);
         draw();
 
     }
@@ -46,13 +50,29 @@ public class Game {
         GameUnit gu;
         UnitView uv;
         UnitView preUv;
-        for(int i = 0; i < placed.size(); i++){
-            gu = placed.get(i);
-            preUv = (UnitView)gg.getChildAt(gu.getPreIndex());
-            uv =  (UnitView) gg.getChildAt(gu.getIndex());
+        GameBlock gb;
 
-            preUv.delet();
-            uv.setFgColor(gu.getColor());
+        for(int i = 0; i < placed.size(); i++){
+            gb = placed.get(i);
+            for(int u = 0 ; u < gb.getUnits().length; u++){
+                gu = gb.getUnits()[u];
+                preUv = (UnitView)gg.getChildAt(gu.getPreIndex());
+                preUv.delet();
+
+            }
+            for(int u = 0 ; u < gb.getUnits().length; u++){
+                gu = gb.getUnits()[u];
+                uv =  (UnitView) gg.getChildAt(gu.getIndex());
+                uv.setFgColor(gu.getColor());
+
+            }
+
+//            gu = placed.get(i);
+//            preUv = (UnitView)gg.getChildAt(gu.getPreIndex());
+//            uv =  (UnitView) gg.getChildAt(gu.getIndex());
+//
+//            preUv.delet();
+//            uv.setFgColor(gu.getColor());
 
         }
         ma.invalidateMenu();
@@ -63,8 +83,7 @@ public class Game {
         Log.d("handler", "hello handler");
         dropCurrent();
 
-        if(current.getY() == 19)
-            endGame();
+
         draw();
 
         gameH.postDelayed(new Runnable() {
@@ -73,7 +92,7 @@ public class Game {
                 if (runGame)
                     handleGame();
             }
-        }, 1000);
+        }, 500);
 
     }
 
