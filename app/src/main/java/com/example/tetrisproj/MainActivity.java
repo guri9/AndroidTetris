@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.core.view.accessibility.AccessibilityViewCommand;
 import androidx.gridlayout.widget.GridLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        current = new GameUnit(yellow);
+        current = new GameUnit(yellow, 0, 0);
 
         gg = findViewById(R.id.gameGrid);
         gg.removeAllViews();
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
     public void leftClick(View v) {
         game.moveLCurrent();
 
+    }
+    public void rotate(View v){
+        game.rotateCurrent();
     }
     public void rightClick(View v){
         game.moveRCurrent();

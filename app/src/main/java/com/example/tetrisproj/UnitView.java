@@ -25,6 +25,7 @@ public class UnitView extends View {
     Paint p;
     Rect rect;
     Canvas myCanvas;
+    GameUnit master;
 
     int width;
     int height;
@@ -79,9 +80,10 @@ public class UnitView extends View {
         return bgColor;
     }
 
-    public void delet(){
+    public void delete(){
         setBgColor(dark_grey);
         setFgColor(grey);
+        num = 0;
     }
     public void setFgColor(Colors c){
         fgColor = c;
@@ -89,5 +91,15 @@ public class UnitView extends View {
     }
     public Colors getFgColor(){
         return fgColor;
+    }
+
+    public void setMaster(GameUnit gu){
+        master = gu;
+
+        setFgColor(master.getColor());
+        setNum(master.getKey());
+    }
+    public GameUnit getMaster(){
+        return master;
     }
 }
